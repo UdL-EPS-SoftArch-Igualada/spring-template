@@ -1,6 +1,24 @@
-allowed-origins: http://localhost:3000
-default-password: password
 spring:
   h2:
     console:
       enabled: false
+
+allowed-origins: http://localhost:3000
+default-password: password
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+allowed-origins: "https://react-template.netlify.app,https://deploy-preview-*--react-template.netlify.app"
+
+logging:
+  level:
+    org:
+      hibernate: error
+      springframework.core: error
+      springframework.web: error
+    root: error

@@ -1,31 +1,34 @@
 package cat.udl.eps.softarch.demo.handler;
 
-import cat.udl.eps.softarch.demo.domain.Record;
-import cat.udl.eps.softarch.demo.repository.RecordRepository;
-import org.springframework.data.rest.core.annotation.*;
+import java.time.ZonedDateTime;
+
+import org.springframework.data.rest.core.annotation.HandleBeforeCreate;
+import org.springframework.data.rest.core.annotation.HandleBeforeSave;
+import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.springframework.stereotype.Component;
 
-import java.time.ZonedDateTime;
+import cat.udl.eps.softarch.demo.domain.Record;
+import cat.udl.eps.softarch.demo.repository.RecordRepository;
 
 @Component
 @RepositoryEventHandler
 public class RecordEventHandler {
-    final RecordRepository recordRepository;
+	final RecordRepository recordRepository;
 
-    public RecordEventHandler(RecordRepository recordRepository) {
-        this.recordRepository = recordRepository;
-    }
+	public RecordEventHandler(RecordRepository recordRepository) {
+		this.recordRepository = recordRepository;
+	}
 
-    @HandleBeforeCreate
-    public void handleRecordPreCreate(Record record) {
-        ZonedDateTime timeStamp = ZonedDateTime.now();
-        record.setCreated(timeStamp);
-        record.setModified(timeStamp);
-    }
+	@HandleBeforeCreate
+	public void handleRecordPreCreate(Record record) {
+		ZonedDateTime timeStamp = ZonedDateTime.now();
+		record.setCreated(timeStamp);
+		record.setModified(timeStamp);
+	}
 
-    @HandleBeforeSave
-    public void handleRecordPreSave(Record record) {
-        ZonedDateTime timeStamp = ZonedDateTime.now();
-        record.setModified(timeStamp);
-    }
+	@HandleBeforeSave
+	public void handleRecordPreSave(Record record) {
+		ZonedDateTime timeStamp = ZonedDateTime.now();
+		record.setModified(timeStamp);
+	}
 }

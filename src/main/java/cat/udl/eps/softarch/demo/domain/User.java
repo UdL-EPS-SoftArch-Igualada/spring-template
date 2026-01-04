@@ -1,14 +1,7 @@
 package cat.udl.eps.softarch.demo.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Collection;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-
-import com.fasterxml.jackson.annotation.JsonValue;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -16,15 +9,25 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.Collection;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name = "DemoUser") //Avoid collision with system table User
+@Table(name = "DemoUser") // Avoid collision with system table User
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class User extends UriEntity<String> implements UserDetails {
 
-	public static PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	public static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	@Id
 	private String id;
@@ -47,9 +50,13 @@ public class User extends UriEntity<String> implements UserDetails {
 	}
 
 	@Override
-	public String getUsername() { return id; }
+	public String getUsername() {
+		return id;
+	}
 
-	public void setUsername(String username) { this.id = username; }
+	public void setUsername(String username) {
+		this.id = username;
+	}
 
 	@Override
 	@JsonValue(value = false)

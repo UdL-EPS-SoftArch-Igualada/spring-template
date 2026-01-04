@@ -1,5 +1,9 @@
 # Getting Started
 
+### Run API locally
+
+Using your IDE, execute `MainApplication::main`.
+
 ### Reference Documentation
 For further reference, please consider the following guides:
 

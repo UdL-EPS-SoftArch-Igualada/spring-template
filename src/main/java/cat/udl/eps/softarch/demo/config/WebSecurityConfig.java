@@ -21,42 +21,42 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class WebSecurityConfig {
-    @Value("${allowed-origins}")
-    String[] allowedOrigins;
+	@Value("${allowed-origins}")
+	String[] allowedOrigins;
 
-    @Bean
-    protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((auth) -> auth
-                .requestMatchers(HttpMethod.GET, "/identity").authenticated()
-                .requestMatchers(HttpMethod.GET, "/users").authenticated()
-                .requestMatchers(HttpMethod.POST, "/users").anonymous()
-                .requestMatchers(HttpMethod.POST, "/users/*").denyAll()
-                .requestMatchers(HttpMethod.POST, "/*/*").authenticated()
-                .requestMatchers(HttpMethod.PUT, "/*/*").authenticated()
-                .requestMatchers(HttpMethod.PATCH, "/*/*").authenticated()
-                .requestMatchers(HttpMethod.DELETE, "/*/*").authenticated()
-                .anyRequest().permitAll())
-            .csrf((csrf) -> csrf.disable())
-            .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .cors((cors) -> cors.configurationSource(corsConfigurationSource()))
-            .httpBasic((httpBasic) -> httpBasic.realmName("demo"));
-        return http.build();
-    }
+	@Bean
+	protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		http.authorizeHttpRequests((auth) -> auth
+				.requestMatchers(HttpMethod.GET, "/identity").authenticated()
+				.requestMatchers(HttpMethod.GET, "/users").authenticated()
+				.requestMatchers(HttpMethod.POST, "/users").anonymous()
+				.requestMatchers(HttpMethod.POST, "/users/*").denyAll()
+				.requestMatchers(HttpMethod.POST, "/*/*").authenticated()
+				.requestMatchers(HttpMethod.PUT, "/*/*").authenticated()
+				.requestMatchers(HttpMethod.PATCH, "/*/*").authenticated()
+				.requestMatchers(HttpMethod.DELETE, "/*/*").authenticated()
+				.anyRequest().permitAll())
+				.csrf((csrf) -> csrf.disable())
+				.sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.cors((cors) -> cors.configurationSource(corsConfigurationSource()))
+				.httpBasic((httpBasic) -> httpBasic.realmName("demo"));
+		return http.build();
+	}
 
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOriginPatterns(Arrays.asList(allowedOrigins));
-        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        corsConfiguration.setAllowedHeaders(List.of("*"));
-        corsConfiguration.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", corsConfiguration);
-        return source;
-    }
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration corsConfiguration = new CorsConfiguration();
+		corsConfiguration.setAllowedOriginPatterns(Arrays.asList(allowedOrigins));
+		corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+		corsConfiguration.setAllowedHeaders(List.of("*"));
+		corsConfiguration.setAllowCredentials(true);
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", corsConfiguration);
+		return source;
+	}
 
-    @Bean
-    public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
-        return new SecurityEvaluationContextExtension();
-    }
+	@Bean
+	public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
+		return new SecurityEvaluationContextExtension();
+	}
 }
