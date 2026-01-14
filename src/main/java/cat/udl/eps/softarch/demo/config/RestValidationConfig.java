@@ -10,16 +10,16 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @Configuration
 public class RestValidationConfig implements RepositoryRestConfigurer {
 
-    @Bean
-    @Primary
-    LocalValidatorFactoryBean validator() {
-        return new LocalValidatorFactoryBean();
-    }
+	@Bean
+	@Primary
+	LocalValidatorFactoryBean validator() {
+		return new LocalValidatorFactoryBean();
+	}
 
-    @Override
-    public void configureValidatingRepositoryEventListener(
-        ValidatingRepositoryEventListener validatingListener) {
-        validatingListener.addValidator("beforeCreate", validator());
-        validatingListener.addValidator("beforeSave", validator());
-    }
+	@Override
+	public void configureValidatingRepositoryEventListener(
+			ValidatingRepositoryEventListener validatingListener) {
+		validatingListener.addValidator("beforeCreate", validator());
+		validatingListener.addValidator("beforeSave", validator());
+	}
 }

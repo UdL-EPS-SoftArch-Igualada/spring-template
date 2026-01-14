@@ -6,13 +6,6 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import cat.udl.eps.softarch.demo.DemoApplication;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import io.cucumber.java.Before;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
-import io.cucumber.spring.CucumberContextConfiguration;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootContextLoader;
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers;
@@ -26,10 +19,16 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-@ContextConfiguration(
-	classes = {DemoApplication.class},
-	loader = SpringBootContextLoader.class
-)
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
+import cat.udl.eps.softarch.demo.MainApplication;
+import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.spring.CucumberContextConfiguration;
+
+@ContextConfiguration(classes = { MainApplication.class }, loader = SpringBootContextLoader.class)
 @DirtiesContext
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
@@ -37,34 +36,34 @@ import org.springframework.web.context.WebApplicationContext;
 @CucumberContextConfiguration
 public class StepDefs {
 
-    protected final WebApplicationContext wac;
-    protected MockMvc mockMvc;
-    protected ResultActions result;
-    protected ObjectMapper mapper = new ObjectMapper();
+	protected final WebApplicationContext wac;
+	protected MockMvc mockMvc;
+	protected ResultActions result;
+	protected ObjectMapper mapper = new ObjectMapper();
 
-    public StepDefs(WebApplicationContext wac) {
-        this.wac = wac;
-    }
+	public StepDefs(WebApplicationContext wac) {
+		this.wac = wac;
+	}
 
-    @Before
-    public void setup() {
-        this.mockMvc = MockMvcBuilders
-                .webAppContextSetup(this.wac)
-                .apply(SecurityMockMvcConfigurers.springSecurity())
-                .build();
-        this.mapper.registerModule(new JavaTimeModule());
-    }
+	@Before
+	public void setup() {
+		this.mockMvc = MockMvcBuilders
+				.webAppContextSetup(this.wac)
+				.apply(SecurityMockMvcConfigurers.springSecurity())
+				.build();
+		this.mapper.registerModule(new JavaTimeModule());
+	}
 
-    @Then("^The response code is (\\d+)$")
-    public void theResponseCodeIs(int code) throws Throwable {
-        result.andExpect(status().is(code));
-    }
+	@Then("^The response code is (\\d+)$")
+	public void theResponseCodeIs(int code) throws Throwable {
+		result.andExpect(status().is(code));
+	}
 
-    @And("^The error message is \"([^\"]*)\"$")
-    public void theErrorMessageIs(String message) throws Throwable {
-        if (result.andReturn().getResponse().getContentAsString().isEmpty())
-            result.andExpect(status().reason(is(message)));
-        else
-            result.andExpect(jsonPath("$..message", hasItem(containsString(message))));
-    }
+	@And("^The error message is \"([^\"]*)\"$")
+	public void theErrorMessageIs(String message) throws Throwable {
+		if (result.andReturn().getResponse().getContentAsString().isEmpty())
+			result.andExpect(status().reason(is(message)));
+		else
+			result.andExpect(jsonPath("$..message", hasItem(containsString(message))));
+	}
 }
