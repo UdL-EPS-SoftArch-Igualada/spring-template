@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
-@Profile("postgres")
+@Profile("prod")
 public class DatabaseConfig {
 	@Bean
 	public DataSource dataSource() throws URISyntaxException {
