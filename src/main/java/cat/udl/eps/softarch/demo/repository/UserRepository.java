@@ -8,7 +8,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import cat.udl.eps.softarch.demo.domain.User;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name = "Users", description = "Repository for managing User entities")
 @RepositoryRestResource
 public interface UserRepository extends CrudRepository<User, String>, PagingAndSortingRepository<User, String> {
 
@@ -27,5 +30,6 @@ public interface UserRepository extends CrudRepository<User, String>, PagingAndS
 	 * -methods.query-creation
 	 */
 
+	@Operation(summary = "Search users by username", description = "Returns a list of Users whose usernames contain the specified text.")
 	List<User> findByIdContaining(@Param("text") String text);
 }
