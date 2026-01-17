@@ -9,11 +9,13 @@ default-password: password
 ---
 
 spring:
+  jpa:
+    generate-ddl: true
   config:
     activate:
       on-profile: prod
 
-allowed-origins: "https://react-template.netlify.app,https://deploy-preview-*--react-template.netlify.app"
+allowed-origins: "https://my-production-domain.com,https://*.*.pages.dev"
 
 logging:
   level:
