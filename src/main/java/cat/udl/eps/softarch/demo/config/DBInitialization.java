@@ -51,7 +51,7 @@ public class DBInitialization {
 				record.setDescription("A record used for testing purposes, nothing more, nothing less...");
 				record.setCreated(ZonedDateTime.now());
 				record.setModified(record.getCreated());
-				record.setOwnedBy(user);
+				record.setOwner(user);
 				recordRepository.save(record);
 			}
 		}

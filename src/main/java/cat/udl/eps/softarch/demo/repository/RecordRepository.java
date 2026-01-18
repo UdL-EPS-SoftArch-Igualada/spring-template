@@ -15,5 +15,5 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public interface RecordRepository extends CrudRepository<Record, Long>, PagingAndSortingRepository<Record, Long> {
 	@Operation(summary = "Find records by owner",
 			description = "Returns a list of Records owned by the specified User.")
-	List<Record> findByOwnedBy(@Param("user") User owner);
+	List<Record> findByOwner(@Param("user") User owner);
 }

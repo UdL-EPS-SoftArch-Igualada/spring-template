@@ -43,7 +43,7 @@ public class ManageRecordStepDefs {
 		cat.udl.eps.softarch.demo.domain.Record record = new Record();
 		record.setName(name);
 		User owner = userRepository.findById(ownerName).orElseThrow();
-		record.setOwnedBy(owner);
+		record.setOwner(owner);
 
 		stepDefs.result = stepDefs.mockMvc.perform(
 				post("/records")
@@ -59,7 +59,7 @@ public class ManageRecordStepDefs {
 	public void theNewRecordIsOwnedBy(String username) throws Throwable {
 		String newRecordUri = stepDefs.result.andReturn().getResponse().getHeader("Location");
 		stepDefs.result = stepDefs.mockMvc.perform(
-				get(newRecordUri + "/ownedBy")
+				get(newRecordUri + "/owner")
 						.accept(MediaType.APPLICATION_JSON)
 						.characterEncoding(StandardCharsets.UTF_8)
 						.with(AuthenticationStepDefs.authenticate()))
@@ -71,7 +71,7 @@ public class ManageRecordStepDefs {
 	public void itHasBeenCreatedAUserWithUsername(String username, String resourceName) throws Throwable {
 		User owner = userRepository.findById(username).orElseThrow();
 		stepDefs.result = stepDefs.mockMvc.perform(
-				get("/records/search/findByOwnedBy?user={userUri}", owner.getUri())
+				get("/records/search/findByOwner?user={userUri}", owner.getUri())
 						.accept(MediaType.APPLICATION_JSON)
 						.characterEncoding(StandardCharsets.UTF_8)
 						.with(AuthenticationStepDefs.authenticate()))

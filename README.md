@@ -50,5 +50,5 @@ classDiagram
     UriEntity <|-- User
     UserDetails <|-- User
     UriEntity <|-- Resource
-    User "1" <-- "*" Resource: ownedBy
+    User "1" <-- "*" Resource: owner
 ```
