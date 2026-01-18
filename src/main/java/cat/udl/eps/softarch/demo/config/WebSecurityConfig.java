@@ -24,7 +24,7 @@ public class WebSecurityConfig {
 	String[] allowedOrigins;
 
 	@Bean
-	protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	protected SecurityFilterChain securityFilterChain(HttpSecurity http) {
 		http.authorizeHttpRequests(auth -> auth
 				.requestMatchers(HttpMethod.GET, "/identity").authenticated()
 				.requestMatchers(HttpMethod.GET, "/users").authenticated()

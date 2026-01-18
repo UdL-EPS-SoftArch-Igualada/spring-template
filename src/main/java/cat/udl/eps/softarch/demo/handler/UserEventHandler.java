@@ -19,7 +19,7 @@ import cat.udl.eps.softarch.demo.repository.UserRepository;
 @RepositoryEventHandler
 public class UserEventHandler {
 
-	final Logger logger = LoggerFactory.getLogger(User.class);
+	final Logger logger = LoggerFactory.getLogger(UserEventHandler.class);
 
 	final UserRepository userRepository;
 
