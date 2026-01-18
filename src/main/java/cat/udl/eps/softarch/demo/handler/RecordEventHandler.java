@@ -1,12 +1,10 @@
 package cat.udl.eps.softarch.demo.handler;
 
 import java.time.ZonedDateTime;
-
 import org.springframework.data.rest.core.annotation.HandleBeforeCreate;
 import org.springframework.data.rest.core.annotation.HandleBeforeSave;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.springframework.stereotype.Component;
-
 import cat.udl.eps.softarch.demo.domain.Record;
 import cat.udl.eps.softarch.demo.repository.RecordRepository;
 
@@ -20,15 +18,15 @@ public class RecordEventHandler {
 	}
 
 	@HandleBeforeCreate
-	public void handleRecordPreCreate(Record record) {
+	public void handleRecordPreCreate(Record userRecord) {
 		ZonedDateTime timeStamp = ZonedDateTime.now();
-		record.setCreated(timeStamp);
-		record.setModified(timeStamp);
+		userRecord.setCreated(timeStamp);
+		userRecord.setModified(timeStamp);
 	}
 
 	@HandleBeforeSave
-	public void handleRecordPreSave(Record record) {
+	public void handleRecordPreSave(Record userRecord) {
 		ZonedDateTime timeStamp = ZonedDateTime.now();
-		record.setModified(timeStamp);
+		userRecord.setModified(timeStamp);
 	}
 }

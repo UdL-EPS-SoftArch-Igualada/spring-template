@@ -5,7 +5,6 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootContextLoader;
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers;
@@ -18,17 +17,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-
 import cat.udl.eps.softarch.demo.MainApplication;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.spring.CucumberContextConfiguration;
 
-@ContextConfiguration(classes = { MainApplication.class }, loader = SpringBootContextLoader.class)
+@ContextConfiguration(classes = {MainApplication.class}, loader = SpringBootContextLoader.class)
 @DirtiesContext
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
@@ -61,9 +58,10 @@ public class StepDefs {
 
 	@And("^The error message is \"([^\"]*)\"$")
 	public void theErrorMessageIs(String message) throws Throwable {
-		if (result.andReturn().getResponse().getContentAsString().isEmpty())
+		if (result.andReturn().getResponse().getContentAsString().isEmpty()) {
 			result.andExpect(status().reason(is(message)));
-		else
+		} else {
 			result.andExpect(jsonPath("$..message", hasItem(containsString(message))));
+		}
 	}
 }

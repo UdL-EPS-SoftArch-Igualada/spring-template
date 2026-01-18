@@ -7,12 +7,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import java.nio.charset.StandardCharsets;
-
 import org.json.JSONObject;
 import org.springframework.http.MediaType;
-
 import cat.udl.eps.softarch.demo.domain.User;
 import cat.udl.eps.softarch.demo.repository.UserRepository;
 import io.cucumber.java.en.And;
@@ -72,8 +69,7 @@ public class RegisterStepDefs {
 	}
 
 	@When("^I register a new user with username \"([^\"]*)\", email \"([^\"]*)\" and password \"([^\"]*)\"$")
-	public void iRegisterANewUserWithUsernameEmailAndPassword(String username, String email, String password)
-			throws Throwable {
+	public void iRegisterANewUserWithUsernameEmailAndPassword(String username, String email, String password) throws Throwable {
 		User user = new User();
 		user.setId(username);
 		user.setEmail(email);

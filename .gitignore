@@ -8,9 +8,12 @@ target/
 .classpath
 .factorypath
 .project
-.settings
 .springBeans
 .sts4-cache
+.settings/*
+!.settings/checkstyle.xml
+!.settings/suppressions-xpath.xml
+!.settings/java-formatter.xml
 
 ### IntelliJ IDEA ###
 .idea

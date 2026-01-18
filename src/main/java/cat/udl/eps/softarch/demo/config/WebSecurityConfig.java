@@ -2,7 +2,6 @@ package cat.udl.eps.softarch.demo.config;
 
 import java.util.Arrays;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +25,7 @@ public class WebSecurityConfig {
 
 	@Bean
 	protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests((auth) -> auth
+		http.authorizeHttpRequests(auth -> auth
 				.requestMatchers(HttpMethod.GET, "/identity").authenticated()
 				.requestMatchers(HttpMethod.GET, "/users").authenticated()
 				.requestMatchers(HttpMethod.POST, "/users").anonymous()

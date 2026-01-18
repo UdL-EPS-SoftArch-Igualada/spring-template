@@ -12,7 +12,6 @@ import org.springframework.data.rest.core.annotation.HandleBeforeLinkSave;
 import org.springframework.data.rest.core.annotation.HandleBeforeSave;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.springframework.stereotype.Component;
-
 import cat.udl.eps.softarch.demo.domain.User;
 import cat.udl.eps.softarch.demo.repository.UserRepository;
 
@@ -30,34 +29,34 @@ public class UserEventHandler {
 
 	@HandleBeforeCreate
 	public void handleUserPreCreate(User user) {
-		logger.info("Before creating: {}", user.toString());
+		logger.info("Before creating: {}", user);
 	}
 
 	@HandleBeforeSave
 	public void handleUserPreSave(User user) {
-		logger.info("Before updating: {}", user.toString());
+		logger.info("Before updating: {}", user);
 	}
 
 	@HandleBeforeDelete
 	public void handleUserPreDelete(User user) {
-		logger.info("Before deleting: {}", user.toString());
+		logger.info("Before deleting: {}", user);
 	}
 
 	@HandleBeforeLinkSave
 	public void handleUserPreLinkSave(User user, Object o) {
-		logger.info("Before linking: {} to {}", user.toString(), o.toString());
+		logger.info("Before linking: {} to {}", user, o);
 	}
 
 	@HandleAfterCreate
 	public void handleUserPostCreate(User user) {
-		logger.info("After creating: {}", user.toString());
+		logger.info("After creating: {}", user);
 		user.encodePassword();
 		userRepository.save(user);
 	}
 
 	@HandleAfterSave
 	public void handleUserPostSave(User user) {
-		logger.info("After updating: {}", user.toString());
+		logger.info("After updating: {}", user);
 		if (user.isPasswordReset()) {
 			user.encodePassword();
 		}
@@ -66,11 +65,11 @@ public class UserEventHandler {
 
 	@HandleAfterDelete
 	public void handleUserPostDelete(User user) {
-		logger.info("After deleting: {}", user.toString());
+		logger.info("After deleting: {}", user);
 	}
 
 	@HandleAfterLinkSave
 	public void handleUserPostLinkSave(User user, Object o) {
-		logger.info("After linking: {} to {}", user.toString(), o.toString());
+		logger.info("After linking: {} to {}", user, o);
 	}
 }

@@ -2,10 +2,8 @@ package cat.udl.eps.softarch.demo.config;
 
 import java.time.ZonedDateTime;
 import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-
 import cat.udl.eps.softarch.demo.domain.Record;
 import cat.udl.eps.softarch.demo.domain.User;
 import cat.udl.eps.softarch.demo.repository.RecordRepository;

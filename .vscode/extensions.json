@@ -1,0 +1,7 @@
+{
+	"recommendations": [
+		"redhat.java",
+		"shengchen.vscode-checkstyle",
+		"vscjava.vscode-java-debug",
+	]
+}

@@ -1,11 +1,8 @@
 package cat.udl.eps.softarch.demo.domain;
 
 import java.time.ZonedDateTime;
-
 import org.springframework.format.annotation.DateTimeFormat;
-
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

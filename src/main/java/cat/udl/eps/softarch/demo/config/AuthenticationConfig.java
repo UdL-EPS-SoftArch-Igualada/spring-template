@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.GlobalAuthenticationConfigurerAdapter;
-
 import cat.udl.eps.softarch.demo.domain.User;
 import cat.udl.eps.softarch.demo.repository.UserRepository;
 
@@ -23,9 +22,8 @@ public class AuthenticationConfig extends GlobalAuthenticationConfigurerAdapter 
 	}
 
 	@Override
-	public void init(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-				.userDetailsService(basicUserDetailsService)
+	public void init(AuthenticationManagerBuilder auth) {
+		auth.userDetailsService(basicUserDetailsService)
 				.passwordEncoder(User.passwordEncoder);
 	}
 }

@@ -2,7 +2,6 @@ package cat.udl.eps.softarch.demo.config;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

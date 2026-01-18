@@ -2,9 +2,7 @@ package cat.udl.eps.softarch.demo.steps;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.anonymous;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
-
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
-
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 

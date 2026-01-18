@@ -2,5 +2,10 @@
 	"editor.formatOnSave": true,
 	"editor.detectIndentation": false,
 	"editor.insertSpaces": false,
-	"java.configuration.updateBuildConfiguration": "automatic"
+	"java.checkstyle.configuration": ".settings/checkstyle.xml",
+	"java.checkstyle.version": "10.23.0",
+	"java.format.settings.profile": "SoftArchFormatProfile",
+	"java.format.settings.url": ".settings/java-formatter.xml",
+	"java.configuration.updateBuildConfiguration": "automatic",
+	"java.compile.nullAnalysis.mode": "automatic"
 }

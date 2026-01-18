@@ -6,7 +6,6 @@ import org.springframework.data.rest.webmvc.PersistentEntityResourceAssembler;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import cat.udl.eps.softarch.demo.domain.User;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -15,10 +14,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class IdentityController {
 
 	@RequestMapping("/identity")
-	public @ResponseBody PersistentEntityResource getAuthenticatedUserIdentity(
-			PersistentEntityResourceAssembler resourceAssembler) {
+	public @ResponseBody PersistentEntityResource getAuthenticatedUserIdentity(PersistentEntityResourceAssembler resourceAssembler) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+		if (user == null) {
+			return null;
+		}
 		return resourceAssembler.toFullResource(user);
 	}
 }
