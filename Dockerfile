@@ -4,7 +4,7 @@ WORKDIR /app
 COPY pom.xml .
 RUN mvn -B -q dependency:go-offline
 COPY src ./src
-RUN mvn -B -q package -DskipTests
+RUN mvn -B -q package -DskipTests -Dcheckstyle.skip=true
 
 # Runtime stage
 FROM ibm-semeru-runtimes:open-21-jre-noble
