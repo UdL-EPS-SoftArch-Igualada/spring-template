@@ -15,7 +15,7 @@ spring:
     activate:
       on-profile: prod
 
-allowed-origins: "https://my-production-domain.com,https://*.*.pages.dev"
+allowed-origins: "https://my-production-domain.com,https://*.vercel.app"
 
 logging:
   level:
