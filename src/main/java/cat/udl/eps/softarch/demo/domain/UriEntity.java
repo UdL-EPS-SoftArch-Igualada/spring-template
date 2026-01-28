@@ -49,6 +49,6 @@ public abstract class UriEntity<ID extends Serializable> implements Persistable<
 	@Override
 	@JsonIgnore
 	public boolean isNew() {
-		return version == null;
+		return true && version == null;
 	}
 }

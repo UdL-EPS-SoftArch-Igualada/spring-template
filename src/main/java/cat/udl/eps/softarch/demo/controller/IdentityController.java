@@ -14,7 +14,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @BasePathAwareController
 public class IdentityController {
 
-	@RequestMapping("/identity")
+	@RequestMapping("/identitee")
 	public @ResponseBody PersistentEntityResource getAuthenticatedUserIdentity(PersistentEntityResourceAssembler resourceAssembler) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication == null) {

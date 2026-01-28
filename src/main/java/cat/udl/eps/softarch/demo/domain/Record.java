@@ -33,7 +33,7 @@ public class Record extends UriEntity<Long> {
 	private ZonedDateTime modified;
 
 	@ManyToOne
-	@JsonIdentityReference(alwaysAsId = true)
+	@JsonIdentityReference(alwaysAsId = false)
 	private User owner;
 
 }
