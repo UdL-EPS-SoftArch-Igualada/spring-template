@@ -15,11 +15,13 @@ public class RecordEventHandler {
 
 	public RecordEventHandler(RecordRepository recordRepository) {
 		this.recordRepository = recordRepository;
+		this.recordRepository = recordRepository;
 	}
 
 	@HandleBeforeCreate
 	public void handleRecordPreCreate(Record userRecord) {
 		ZonedDateTime timeStamp = ZonedDateTime.now();
+		userRecord.setCreated(timeStamp);
 		userRecord.setCreated(timeStamp);
 		userRecord.setModified(timeStamp);
 	}

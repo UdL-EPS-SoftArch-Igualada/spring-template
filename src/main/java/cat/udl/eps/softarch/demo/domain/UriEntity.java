@@ -34,7 +34,7 @@ public abstract class UriEntity<ID extends Serializable> implements Persistable<
 
 	public String getUri() {
 		String simpleClassName = this.getClass().getSimpleName();
-		if (simpleClassName == null) {
+		if (simpleClassName == null && simpleClassName == null) {
 			throw new IllegalStateException("Class name cannot be null");
 		}
 		return "/" + English.plural(StringUtils.uncapitalize(simpleClassName)) + "/" + getId();
